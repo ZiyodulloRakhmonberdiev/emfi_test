@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция по авторизации в amoCRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #4285f4;
+            color: white;
+            font-weight: 500;
+            padding: 15px 20px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .step {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .step:last-child {
+            border-bottom: none;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #4285f4;
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin: 15px 0;
+            border-left: 4px solid #4285f4;
+        }
+        .alert-info {
+            background-color: #e8f0fe;
+            border-color: #cfe2ff;
+            color: #0a58ca;
+        }
+        .alert-warning {
+            background-color: #fff8e1;
+            border-color: #ffe0b2;
+            color: #ff8f00;
+        }
+        .btn-primary {
+            background-color: #4285f4;
+            border-color: #4285f4;
+        }
+        .btn-primary:hover {
+            background-color: #3367d6;
+            border-color: #3367d6;
+        }
+        .screenshot {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Подробная инструкция по авторизации в amoCRM</h1>
+        
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <strong>Важно:</strong> Если вы получаете ошибки 400 или 401, скорее всего проблема в авторизации. Следуйте этой инструкции шаг за шагом.
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="mb-0"><i class="fas fa-key me-2"></i>Получение Authorization Code</h2>
+            </div>
+            <div class="card-body">
+                <div class="step">
+                    <h4><span class="step-number">1</span> Войдите в свой аккаунт amoCRM</h4>
+                    <p>Перейдите на сайт <a href="https://www.amocrm.ru/" target="_blank">amocrm.ru</a> и войдите в свой аккаунт.</p>
+                </div>
+                
+                <div class="step">
+                    <h4><span class="step-number">2</span> Перейдите в настройки</h4>
+                    <p>Нажмите на свой профиль в правом верхнем углу и выберите "Настройки".</p>
+                </div>
+                
+                <div class="step">
+                    <h4><span class="step-number">3</span> Перейдите в раздел интеграций</h4>
+                    <p>В левом меню выберите "API" и затем "Интеграции".</p>
+                </div>
+                
+                <div class="step">
+                    <h4><span class="step-number">4</span> Создайте новую интеграцию</h4>
+                    <p>Нажмите кнопку "Добавить интеграцию" и заполните следующие поля:</p>
+                    <ul>
+                        <li><strong>Название:</strong> Любое название, например "Тестовое приложение"</li>
+                        <li><strong>Redirect URI:</strong> <code>https://example.com</code> (важно указать именно этот URL)</li>
+                        <li><strong>Права доступа:</strong> Выберите все необходимые права (минимум: "Просмотр сделок", "Просмотр контактов", "Просмотр задач")</li>
+                    </ul>
+                    <p>Нажмите "Сохранить".</p>
+                </div>
+                
+                <div class="step">
+                    <h4><span class="step-number">5</span> Получите данные интеграции</h4>
+                    <p>После создания интеграции вы увидите следующие данные:</p>
+                    <ul>
+                        <li><strong>Integration ID</strong> - это ваш <code>Client ID</code></li>
+                        <li><strong>Secret Key</strong> - это ваш <code>Client Secret</code></li>
+                    </ul>
+                    <p>Сохраните эти данные, они понадобятся для авторизации.</p>
+                </div>
+                
+                <div class="step">
+                    <h4><span class="step-number">6</span> Получите Authorization Code</h4>
+                    <p>Для получения Authorization Code необходимо выполнить запрос авторизации. Самый простой способ:</p>
+                    <ol>
+                        <li>Перейдите во вкладку "Ключи и доступы" вашей интеграции</li>
+                        <li>Найдите раздел "Authorization code" и нажмите кнопку "Получить код"</li>
+                        <li>Система выдаст вам код авторизации, который действует 20 минут</li>
+                    </ol>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Внимание:</strong> Authorization Code действителен только 20 минут! Если вы не успеете использовать его за это время, придется получить новый код.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="mb-0"><i class="fas fa-exchange-alt me-2"></i>Получение Access Token</h2>
+            </div>
+            <div class="card-body">
+                <div class="step">
+                    <h4><span class="step-number">1</span> Запустите прокси-сервер</h4>
+                    <p>Перед началом работы с приложением необходимо запустить прокси-сервер:</p>
+                    <div class="code-block">node proxy.js</div>
+                    <p>Вы должны увидеть сообщение:</p>
+                    <div class="code-block">CORS Proxy server running at http://localhost:8080</div>
+                </div>
+                
+                <div class="step">
+                    <h4><span class="step-number">2</span> Введите данные в приложение</h4>
+                    <p>В приложении введите следующие данные:</p>
+                    <ul>
+                        <li><strong>Client ID:</strong> Integration ID из вашей интеграции</li>
+                        <li><strong>Client Secret:</strong> Secret Key из вашей интеграции</li>
+                        <li><strong>Authorization Code:</strong> Код, полученный на предыдущем шаге</li>
+                        <li><strong>Redirect URI:</strong> <code>https://example.com</code> (должен совпадать с URI, указанным при создании интеграции)</li>
+                        <li><strong>Поддомен:</strong> <code>ziyodullorakhmonberdiev</code> (или ваш поддомен amoCRM)</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <h4><span class="step-number">3</span> Получите Access Token</h4>
+                    <p>Нажмите кнопку "Получить Access Token". Если все данные введены правильно, вы получите токен доступа, который будет автоматически сохранен и вставлен в поле "Access Token".</p>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Совет:</strong> Если вы видите ошибки в консоли браузера (F12), они могут содержать дополнительную информацию о проблеме.
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h4><span class="step-number">4</span> Загрузите данные</h4>
+                    <p>После получения токена нажмите кнопку "Загрузить сделки" для получения данных из amoCRM.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="mb-0"><i class="fas fa-bug me-2"></i>Решение проблем</h2>
+            </div>
+            <div class="card-body">
+                <h5>Ошибка 400 (Bad Request)</h5>
+                <p>Возможные причины:</p>
+                <ul>
+                    <li>Неверный формат данных в запросе</li>
+                    <li>Неверный Redirect URI (должен точно совпадать с URI, указанным при создании интеграции)</li>
+                    <li>Истекший Authorization Code (действует только 20 минут)</li>
+                </ul>
+                <p>Решение: Получите новый Authorization Code и убедитесь, что все данные введены правильно.</p>
+                
+                <h5>Ошибка 401 (Unauthorized)</h5>
+                <p>Возможные причины:</p>
+                <ul>
+                    <li>Неверный Client ID или Client Secret</li>
+                    <li>Истекший Access Token</li>
+                    <li>Неверный формат токена в заголовке Authorization</li>
+                </ul>
+                <p>Решение: Проверьте правильность Client ID и Client Secret, получите новый токен доступа.</p>
+                
+                <div class="alert alert-info mt-4">
+                    <i class="fas fa-lightbulb me-2"></i>
+                    <strong>Совет:</strong> Обновленный прокси-сервер теперь выводит подробную информацию о запросах и ответах в консоль. Это поможет вам диагностировать проблемы.
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="index.html" class="btn btn-primary btn-lg">
+                <i class="fas fa-arrow-left me-2"></i>Вернуться к приложению
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+

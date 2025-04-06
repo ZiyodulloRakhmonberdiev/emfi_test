@@ -1,0 +1,506 @@
+/* Base Styles */
+:root {
+  --primary-color: #4285f4;
+  --primary-dark: #3367d6;
+  --secondary-color: #f8f9fa;
+  --text-color: #333;
+  --text-light: #6c757d;
+  --border-color: #dee2e6;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --sidebar-width: 250px;
+  --header-height: 60px;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f5f7fa;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform var(--transition-speed);
+}
+
+.sidebar-header {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+  height: 30px;
+}
+
+.sidebar-content {
+  padding: 20px 0;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.sidebar-menu li:hover {
+  background-color: #f8f9fa;
+  color: var(--primary-color);
+}
+
+.sidebar-menu li.active {
+  background-color: #e9f0fe;
+  color: var(--primary-color);
+  border-left: 3px solid var(--primary-color);
+}
+
+.sidebar-menu li i {
+  margin-right: 12px;
+  width: 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Sidebar Items */
+.sidebar-section {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-section-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-badge {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.sidebar-item {
+  padding: 10px 0;
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-item:last-child {
+  border-bottom: none;
+}
+
+.sidebar-item-content {
+  margin-left: 10px;
+  flex: 1;
+}
+
+.sidebar-item-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 3px;
+  color: var(--text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sidebar-item-subtitle {
+  font-size: 12px;
+  color: var(--text-light);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sidebar-item-phone {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 3px;
+}
+
+.sidebar-item-phone i {
+  margin-right: 5px;
+  font-size: 10px;
+}
+
+.sidebar-empty {
+  text-align: center;
+  padding: 15px 0;
+  color: var(--text-light);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 25px;
+  transition: margin-left var(--transition-speed);
+}
+
+/* Top Navigation */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  margin-right: 12px;
+  font-weight: 500;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: white;
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Auth Section */
+.auth-section .form-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.auth-section .form-control {
+  padding: 10px 12px;
+  height: auto;
+}
+
+/* Table */
+.deals-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.deals-table th {
+  background-color: #f8f9fa;
+  font-weight: 500;
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.deals-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.deals-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.deals-table tbody tr:hover {
+  background-color: rgba(66, 133, 244, 0.05);
+  cursor: pointer;
+}
+
+.deals-table .expanded-row {
+  background-color: #f8f9fa;
+}
+
+/* Expanded Content */
+.expanded-content {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.deal-detail-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.detail-label {
+  font-weight: 500;
+  color: var(--text-light);
+  margin-right: 5px;
+}
+
+/* Task Status */
+.task-status-svg {
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.task-status-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Loading Spinner */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.spinner-container {
+  text-align: center;
+}
+
+.row-spinner {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  padding: 8px 16px;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn-outline-secondary {
+  color: var(--text-light);
+  border-color: var(--border-color);
+  padding: 8px 16px;
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.btn-toggle-sidebar,
+.btn-close-sidebar {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 0;
+}
+
+/* Task Status SVG */
+.task-circle {
+  r: 5;
+  cx: 6;
+  cy: 6;
+  transition: fill 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 20px 15px;
+  }
+
+  .deals-table {
+    min-width: 800px;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .expanded-content {
+    padding: 15px;
+  }
+}
+
+/* Animation */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Form Controls */
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(66, 133, 244, 0.25);
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Badges */
+.badge {
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* Alerts */
+.alert {
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 25px;
+}
+
+/* Modal */
+.modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 20px;
+}
+
+.modal-body {
+  padding: 25px;
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border-color);
+  padding: 16px 20px;
+}
+
+/* Deal Details Modal */
+#dealDetailsModal .deal-detail-card {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+#dealDetailsModal .task-status-svg {
+  width: 14px;
+  height: 14px;
+}
+
+#dealDetailsModal .task-circle {
+  r: 6;
+  cx: 7;
+  cy: 7;
+}
+
+#dealDetailsModal .list-group-item {
+  padding: 15px;
+  border-color: var(--border-color);
+}
+
+/* Expanded details in table */
+.expanded-details .task-status-svg {
+  width: 10px;
+  height: 10px;
+}
+
+.expanded-details .task-circle {
+  r: 4;
+  cx: 5;
+  cy: 5;
+}
+
+/* Additional padding for better content spacing */
+
+/* Mobile responsiveness improvements */
+
